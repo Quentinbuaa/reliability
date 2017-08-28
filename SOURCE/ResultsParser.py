@@ -56,5 +56,3 @@ class ResultsParser:
             exit(-1)
         else:
             return result, max_index
-
-
