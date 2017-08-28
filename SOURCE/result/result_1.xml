@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<result>
+    <data_file_name>call.txt</data_file_name>
+    <bottleneck_V>2.5452e-08 3.4306e-08 9.7965e-10 2.5238e-08 1.4604e-10 8.7464e-10 6.9171e-09 5.3989e-09 2.2391e-09
+        1.4587e-09
+    </bottleneck_V>
+    <bottleneck_T>0.046253 6.9713 0.0073889 0.67039 0.081703 0.00068598 0.03135 0.37084 0.02982 0.017681</bottleneck_T>
+    <bottleneck_L>40259.7603 99545.5791 5909.0443 8706.8661 951.234534 55.4721291 5531.39829 26667.8557 5228.97085
+        5745.40173
+    </bottleneck_L>
+    <reliability>0.99982</reliability>
+</result>
