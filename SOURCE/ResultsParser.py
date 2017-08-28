@@ -42,17 +42,17 @@ class ResultsParser:
 
     def getBottlenecks(self, text):
         result = re.split(' |\t|\n|\r', text)
+        result = [item for item in result if item is not '']
         max = 0
         max_index = 0
         i = 0
         for item in result:
-            temp = math.fabs(float(item))
-            if temp > max:
-                max = temp
-                max_index = i
-            i += 1
-
-        if not len(result) == 10:
-            exit(-1)
-        else:
-            return result, max_index
+            if not item == '':
+                temp = math.fabs(float(item))
+                if temp > max:
+                    max = temp
+                    max_index = i
+                i += 1
+        if len(result) is not 10:
+            print("Func: getBottlenecks, the split results is not with 10 items")
+        return result, max_index

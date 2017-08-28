@@ -12,7 +12,7 @@ from SOURCE.ResultsParser import *
 class AnalysisResults():
     def __init__(self, master):
         self.builder = pygubu.Builder()
-        self.builder.add_from_file("results.ui")
+        self.builder.add_from_file("SOURCE/results.ui")
         self.win = self.builder.get_object("LabelFrame_1", master)
 
         self.builder.connect_callbacks(self)
