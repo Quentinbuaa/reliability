@@ -58,5 +58,3 @@ class ResultsParser:
             return result, max_index
 
 
-testResultsParser = ResultsParser()
-results = testResultsParser.GetResults()
