@@ -1,6 +1,7 @@
 import os
 import tkinter.filedialog as filedialog
 from tkinter import *
+from tkinter import messagebox
 
 from SOURCE.ConfigFileIO import ConfigFile
 
@@ -20,7 +21,7 @@ class AskDir:
 
         self.selectionButton = Button(frame, text="选择一个文件夹", command=self.chooseAFile)
         self.selectionButton.grid(sticky=W + N, row=1, column=0, padx=5, pady=5)
-        self.confirmButton = Button(frame, text="确认", command=self.Confirm)
+        self.confirmButton = Button(frame, text="确认", width=10, command=self.Confirm)
         self.confirmButton.grid(sticky=E + N, row=1, column=1, padx=5, pady=5)
         self.listbox = Listbox(frame, width=60)
         self.listbox.grid(sticky=W + N, row=2, column=0, columnspan=2, padx=5, pady=5)
@@ -41,7 +42,10 @@ class AskDir:
 
     def Confirm(self):
         try:
-            self.configFile.UpdateParameters(self.paraKey, self.paraValue)
+            if self.configFile.UpdateParameters(self.paraKey, self.paraValue):
+                messagebox.showinfo("提示", "配置文件路径为：" + self.paraValue)
+            else:
+                messagebox.showinfo("提示", "配置文件路径与原始路径相同")
         except Exception as e:
             print(e)
 

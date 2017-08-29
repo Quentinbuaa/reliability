@@ -19,7 +19,8 @@ class ConfigFile:
 
     def ParaInitialization(self):
         if not os.path.isfile(self.configfilepath):
-            raise Exception("Func ParaInitialization, config.txt is not exist")
+            self._makeConfigFile()
+            self.ParaInitialization()
         else:
             with open(self.configfilepath) as fr:
                 lines = fr.readlines()
@@ -30,12 +31,23 @@ class ConfigFile:
                     if not line == "":
                         tokens = re.split(self.splitSymbol + "|\n", line)
                         tokens = [k for k in tokens if k is not '']
-                        if not len(tokens) <= 2:
+                        if len(tokens) > 2:
                             raise Exception("3 or more tokens are parsed")
                         else:
-                            self.parameters[tokens[0]] = tokens[1]
+                            if len(tokens) == 2:
+                                self.parameters[tokens[0]] = tokens[1]
+                            else:
+                                self.parameters[tokens[0]] = ""
                     else:
                         pass
+
+    def _makeConfigFile(self):
+        with open(self.configfilepath, 'w', encoding='utf8') as f:
+            f.write("data_dir" + self.splitSymbol + "\n")
+            f.write("com_dir" + self.splitSymbol + "\n")
+            f.write("tao_dir" + self.splitSymbol + "\n")
+            f.write("fd" + self.splitSymbol + "\n")
+            f.write("fb" + self.splitSymbol + "\n")
 
     def UpdateConfigFileDir(self, dir):
         if not self.workdir == dir:
@@ -44,13 +56,14 @@ class ConfigFile:
 
     def UpdateParameters(self, paraKey, paraValue):
         if paraKey not in self.parameters:
-            raise Exception("the given parameter is not in the config.txt")
+            raise Exception("the given parameter " + paraKey + " is not in the config.txt")
         else:
             if not self.parameters[paraKey] == paraValue:
                 self.parameters[paraKey] = paraValue
                 self.WriteToConfigFile()
+                return True
             else:
-                pass
+                return False
 
     def WriteToConfigFile(self):
         if not os.path.isfile(self.configfilepath):
