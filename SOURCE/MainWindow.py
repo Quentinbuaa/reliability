@@ -25,17 +25,17 @@ class MainWin:
         self.confirmButton = Button(frame, width=button_width, text=self.jsonConfigData["confirm_button"]["text"],
                                     relief="raise")
 
-        self.dataButton.grid(column=0, row=0, sticky=E + N, padx=5, pady=5)
-        self.comlineButton.grid(column=0, row=1, sticky=E + N, padx=5, pady=5)
-        self.taoButton.grid(column=0, row=2, sticky=E + N, padx=5, pady=5)
-        self.fdButton.grid(column=0, row=3, sticky=E + N, padx=5, pady=5)
-        self.fbButton.grid(column=0, row=4, sticky=E + N, padx=5, pady=5)
-        self.confirmButton.grid(column=0, row=5, sticky=E + N, padx=5, pady=5)
+        self.dataButton.grid(column=0, row=0, sticky=E + S + W + N, padx=5, pady=5)
+        self.comlineButton.grid(column=0, row=1, sticky=E + S + W + N, padx=5, pady=5)
+        self.taoButton.grid(column=0, row=2, sticky=E + S + W + N, padx=5, pady=5)
+        self.fdButton.grid(column=0, row=3, sticky=E + S + W + N, padx=5, pady=5)
+        self.fbButton.grid(column=0, row=4, sticky=E + S + W + N, padx=5, pady=5)
+        self.confirmButton.grid(column=0, row=5, sticky=E + S + W + N, padx=5, pady=5)
 
         self.labelframe = ScrolledText.ScrolledText(frame, width=50, height=20, borderwidth=2, relief="groove")
         self.labelframe.text = self.jsonConfigData["label_frame"]["text"]
         self.labelframe.insert(INSERT, self.labelframe.text)
-        self.labelframe.grid(column=1, row=0, rowspan=6, sticky=W, padx=5, pady=5)
+        self.labelframe.grid(column=1, row=0, rowspan=6, sticky=N + W + S + E, padx=5, pady=5)
         self.labelframe.configure(state=DISABLED)
 
         self.dataButton.bind('<Enter>', self.OnEnter)
