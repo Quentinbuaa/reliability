@@ -42,10 +42,13 @@ class AskDir:
 
     def Confirm(self):
         try:
-            if self.configFile.UpdateParameters(self.paraKey, self.paraValue):
-                messagebox.showinfo("提示", "配置文件路径为：" + self.paraValue)
+            if self.paraValue == "":
+                messagebox.showinfo("提示", "请先选择一个路径")
             else:
-                messagebox.showinfo("提示", "配置文件路径与原始路径相同")
+                if self.configFile.UpdateParameters(self.paraKey, self.paraValue):
+                    messagebox.showinfo("提示", "配置文件路径为：" + self.paraValue)
+                else:
+                    messagebox.showinfo("提示", "配置文件路径与原始路径相同")
         except Exception as e:
             print(e)
 
